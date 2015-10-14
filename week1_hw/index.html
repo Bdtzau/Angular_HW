@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="library">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Week 1 HW</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+	<h1>Angular HW1 - Daniel Y.</h1>
+
+	<div ng-controller="LibraryController as library">
+		<div class="game-list" ng-repeat="game in library.games">
+
+			<h2 ng-bind="game.name"></h2>
+			<p>Released: <span ng-bind="game.release_date"></span></p>
+			<p>Genre: <span ng-bind="game.genre"></span></p>
+			<p>Published by: <span ng-bind="game.publisher"></span></p>
+			<p>Developed by: <span ng-bind="game.developer"></span></p>
+			<p ng-bind="game.description"></p>
+
+			<a ng-show="game.steam_id" 
+				ng-href="http://store.steampowered.com/app/{{game.steam_id}}">
+				<button>View on Steam</button>
+			</a>
+			<button ng-hide="game.steam_id">Not available on Steam</button>
+
+		</div>
+	</div>
+	
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
