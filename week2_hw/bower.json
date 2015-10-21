@@ -1,0 +1,16 @@
+{
+  "name": "ng-hw1",
+  "version": "0.0.0",
+  "authors": [
+    "Bdtzau"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

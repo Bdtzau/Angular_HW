@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="library">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Week 2 HW</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+	<h1>Angular HW2 - Daniel Y.</h1>
+
+	
+
+	<div ng-controller="LibraryController as library">
+		<form class="form-inline" ng-submit="submit()">
+			<div class="form-group">
+				Wine Search: 
+				<input type="text" class="form-control" placeholder="Wine keywords here" ng-model="wine_query">
+				<button type="submit" class="btn btn-default">Search</button>
+			</div>
+			
+		</form>
+
+		<div class="wine-list" ng-repeat="wine in wines | orderBy: 'PriceRetail'">
+
+			<a ng-href="{{wine.Url}}"><h2 ng-bind="wine.Name"></h2></a>
+
+			<div ng-repeat="label in wine.Labels | limitTo:5">
+				<img ng-src="{{label.Url}}" alt="{{wine.Name}}">
+			</div>
+
+			<section ng-controller="PanelController as panel">
+				<ul class="nav nav-pills">
+					<li ng-class="{ 'active': panel.isSelected(1) }">
+						<a href="" ng-click="panel.selectTab(1)">
+							Overview
+						</a>
+					</li>
+					<li ng-class="{ 'active': panel.isSelected(2) }">
+						<a href="" ng-click="panel.selectTab(2)">
+							Purchase Info
+						</a>
+					</li>
+					<li ng-class="{ 'active': panel.isSelected(3) }">
+						<a href="" ng-click="panel.selectTab(3)">
+							Reviews
+						</a>
+					</li>
+				</ul>
+				<div class="panel" ng-show="panel.isSelected(1)">
+					<h3>Overview</h3>
+					<blockquote>
+						<p>Descriptions are a premium feature of this API :(</p>
+						<p ng-show="wine.Varietal.Name">Varietal: 
+							<a ng-href="{{wine.Varietal.Url}}">{{wine.Varietal.Name}}</a> 
+							(<a ng-href="{{wine.Varietal.WineType.Url}}">{{wine.Varietal.WineType.Name}}</a>)
+						</p>
+						<p ng-show="wine.Vineyard.Name">Vineyard: 
+							<a ng-href="{{wine.Vineyard.Url}}">{{wine.Vineyard.Name}}</a>
+						</p>
+						<p ng-show="wine.Appellation.Name">Appellation: 
+							<a ng-href="{{wine.Appellation.Url}}">{{wine.Appellation.Name}}</a>
+						</p>
+						<p ng-show="wine.Appellation.Region.Name">Region: 
+							<a ng-href="{{wine.Appellation.Region.Url}}">{{wine.Appellation.Region.Name}}</a>
+						</p>
+					</blockquote>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(2)">
+					<h3>Purchase Info</h3>
+					<blockquote>
+						<p ng-show="wine.PriceRetail">Retails for: {{wine.PriceRetail | currency}}</p>
+						<p>Available on Wine.com for {{wine.PriceMin | currency}} - {{wine.PriceMax | currency}}</p>
+					</blockquote>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(3)">
+					<h3>Reviews</h3>
+					<blockquote>
+						<p>Highest Score: {{wine.Ratings.HighestScore}}/100</p>
+						<p>Reviews are a premium feature of this API :(</p>
+					</blockquote>
+				</div>
+			</section>
+			<!-- <p>Released: <span ng-bind="wine.release_date"></span></p>
+			<p>Genre: <span ng-bind="wine.genre"></span></p>
+			<p>Published by: <span ng-bind="wine.publisher"></span></p>
+			<p>Developed by: <span ng-bind="wine.developer"></span></p>
+			<p ng-bind="wine.description"></p>
+
+			<a ng-show="wine.steam_id" 
+				ng-href="http://store.steampowered.com/app/{{wine.steam_id}}">
+				<button>View on Steam</button>
+			</a>
+			<button ng-hide="wine.steam_id">Not available on Steam</button> -->
+
+		</div>
+	</div>
+	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
