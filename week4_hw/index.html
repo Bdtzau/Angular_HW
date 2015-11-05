@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+	<head>
+		<meta charset="UTF-8">
+		<title>Angular Week 4</title>
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="app.css">
+	</head>
+	<body>
+
+		<h1>Angular Week 4</h1>
+
+		
+
+		<div ng-controller="StoreController as store">
+
+			<dy-date>
+				<span>Today's date is:</span>
+			</dy-date>
+			<!-- {{ store.product }} -->
+			<div class="products" 
+				ng-repeat="product in store.products | limitTo:3 | orderBy:'-price' track by $index" 
+				ng-hide="product.soldOut">
+
+				<!-- <div ng-include="'templates/product-price.html'"></div> -->
+				<product-title product="product">
+					<span>This product is:</span>
+				</product-title>
+
+				<div ng-repeat="image in product.images | limitTo:3">
+					<img ng-src="{{image.thumb}}" alt="0" height="200px" width="200px">
+				</div>
+				
+
+				<product-panel>
+				</product-panel>
+
+				
+
+				<button ng-show="product.canPurchase">Add to Cart</button>
+				<button ng-hide="product.canPurchase">Out of Stock</button>
+			</div>
+			
+		</div>
+		
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="app.js"></script>
+		<script src="components/product-title/product-title.js"></script>
+		<script src="components/product-panel/product-panel.js"></script>
+		<script src="components/dy-date/dy-date.js"></script>
+	</body>
+</html>

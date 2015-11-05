@@ -1,0 +1,80 @@
+<section class="product-panel tab-section">
+	<ul class="nav nav-pills">
+		<li ng-class="{ 'active': panels.isSelected(1) }">
+			<a href="" ng-click="panels.selectTab(1)">
+				Description
+			</a>
+		</li>
+		<li ng-class="{ 'active': panels.isSelected(2) }">
+			<a href="" ng-click="panels.selectTab(2)">
+				Specifications
+			</a>
+		</li>
+		<li ng-class="{ 'active': panels.isSelected(3) }">
+			<a href="" ng-click="panels.selectTab(3)">
+				Reviews
+			</a>
+		</li>
+	</ul>
+
+	<div class="panel" ng-show="panels.isSelected(1)">
+		<h4>Description</h4>
+		<blockquote>
+			{{ product.description }}
+		</blockquote>
+	</div>
+	<div class="panel" ng-show="panels.isSelected(2)">
+		<h4>Specifications</h4>
+		<blockquote>
+			Coming Soon
+		</blockquote>
+	</div>
+	<div class="panel" ng-show="panels.isSelected(3)">
+		<h4>Reviews</h4>
+
+		<form name="reviewForm" 
+			novalidate 
+			ng-controller="ReviewFormController as reviewFormCtrl" 
+			ng-submit="reviewForm.$valid && reviewFormCtrl.addReview(product)">
+
+			<blockquote>
+				<b>{{reviewFormCtrl.formReview.stars}} Stars</b>
+				{{reviewFormCtrl.formReview.body}}
+				<cite>by: {{reviewFormCtrl.formReview.author}}</cite>
+				<em>Agreed? {{reviewFormCtrl.formReview.terms}}</em>
+				<p>Sticker color: {{reviewFormCtrl.formReview.color}}</p>
+			</blockquote>
+
+			<select ng-model="reviewFormCtrl.formReview.stars" class="cf" required>
+				<option value="5">5 Stars</option>
+				<option value="4">4 Stars</option>
+				<option value="3">3 Stars</option>
+				<option value="2">2 Stars</option>
+				<option value="1">1 Stars</option>
+			</select>
+
+			<textarea ng-model="reviewFormCtrl.formReview.body" class="cf" placeholder="Your review here" required></textarea>
+			<input ng-model="reviewFormCtrl.formReview.author" type="email" placeholder="email" class="cf" required />
+
+			<input ng-model="reviewFormCtrl.formReview.terms" id="agree" type="checkbox" required>
+			<label for="agree">I agree to the terms.</label>
+
+			<p>What color sticker do you want?</p>
+			<input type="radio" ng-model="reviewFormCtrl.formReview.color" value="red" id="color-red">
+			<label for="color-red">Red</label>
+
+			<input type="radio" ng-model="reviewFormCtrl.formReview.color" value="blue" id="color-blue">
+			<label for="color-blue">Blue</label>
+
+			<input type="radio" ng-model="reviewFormCtrl.formReview.color" value="green" id="color-green">
+			<label for="color-green">Green</label>
+
+			<button type="submit" value="Submit" class="cf">Submit</button>
+		</form>
+		<blockquote ng-repeat="review in product.reviews | orderBy:'-stars' track by $index">
+			<li>Stars: {{review.stars}}/5</li>
+			<li>{{review.body}}</li>
+			<li>from: {{review.author}}</li>
+		</blockquote>
+	</div>
+</section>
