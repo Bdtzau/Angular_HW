@@ -1,0 +1,34 @@
+.inline {
+	display: block;
+	margin-bottom: 3em;
+	padding: 10px 5px;
+}
+
+input.ng-touched.ng-invalid:not(:focus) {
+	border: 2px solid #D55;
+}
+input.ng-touched.ng-valid:not(:focus)[required] {
+	border: 2px solid #494;
+}
+
+input[type="text"] {
+	border-radius: 5px;
+	border: 2px solid #77F;
+	position: relative;
+}
+
+button {
+	border-radius: 5px;
+	border: 2px solid #77F;
+
+	background-color: #FFF;
+	width: 7em;
+}
+
+.error {
+	position: absolute;
+	bottom: 1.5em;
+
+	color: #D55;
+	font-size: 10px;
+}

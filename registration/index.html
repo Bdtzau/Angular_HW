@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userSession">
+<head>
+	<meta charset="UTF-8">
+	<title>Registration</title>
+
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div ng-controller="UserController as userCtrl">
+		<form ng-controller="RegisterFormController as registerFormCtrl"
+				name="registerForm" 
+				novalidate  
+				ng-submit="registerForm.$valid && registerFormCtrl.addUser(user)">
+
+			<h2>Create a New Account</h2>
+
+			<input ng-model="registerFormCtrl.user.username" name="newUsername" type="text" placeholder="choose a username" class="inline" required>
+			<span ng-show="registerForm.newUsername.$error.required" class="error">Please enter a username</span>
+
+			<input ng-model="registerFormCtrl.user.password" type="text" placeholder="password" name="newPassword" id="newPassword" class="inline" ng-minlength="8" required>
+			<span ng-show="registerForm.newPassword.$error.required" class="error">Password must be at least 8 characters in length</span>
+
+			<input ng-model="registerFormCtrl.user.passwordVerify" type="text" placeholder="verify password" class="inline" required>
+
+			<input ng-model="registerFormCtrl.user.email" type="text" placeholder="email (optional)" class="inline">
+
+			
+			<label for="remember" class="inline">
+				<input ng-model="registerFormCtrl.user.remember" type="checkbox" id="remember">
+				remember me
+			</label>
+
+			
+			<label for="spam" class="inline">
+				<input ng-model="registerFormCtrl.user.spam" type="checkbox" id="spam">
+				spam me
+			</label>
+
+			<button type="submit" value="Sign Up" class="inline">Sign Up</button>
+		</form>
+
+		<form ng-controller="LoginFormController as loginFormCtrl"
+				name="loginForm"
+				novalidate
+				ng-submit="loginForm.$valid && loginFormCtrl.beginSession">
+
+			<h2>Log In</h2>
+
+			<input ng-model="loginFormCtrl.user.username" type="text" placeholder="username" class="inline" required>
+
+			<input ng-model="loginFormCtrl.user.password" type="text" placeholder="password" class="inline" required>
+
+			<label for="remember" class="inline">
+				<input ng-model="loginFormCtrl.user.remember" type="checkbox" id="remember">
+				remember me
+			</label>
+
+			<a href="#" class="inline">reset password</a>
+
+			<button type="submit" value="Log In" class="inline">Log In</button>
+		</form>
+	</div>
+
+	<script src="https://code.angularjs.org/1.4.7/angular.js"></script>
+	<script src="https://code.angularjs.org/1.4.7/angular-cookies.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

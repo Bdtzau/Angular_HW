@@ -1,0 +1,40 @@
+.preview_image {
+	position: relative;
+	display: block;
+	float: left;
+
+	width: 300px;
+	height: 300px;
+
+	/*padding: 20px;*/
+
+	background-position: center;
+	background-size: contain;
+
+	font-family: helvetica, sans-serif;
+	color: #FFF;
+	text-shadow: 0 0 5px #000;
+}
+
+.preview_image .text {
+	display: none;
+	position: absolute;
+
+	padding: 2.5%;
+	width: 95%;
+	height: 95%;
+}
+.preview_image:hover .text {
+	display: block;
+	background-color: rgba(0,0,0,0.5);
+}
+
+/*.preview_image:hover {
+	content: "";
+	display: block;
+
+	background-color: rgba(0,0,0,0.5);
+
+	width: 100%;
+	height: 100%;
+}*/

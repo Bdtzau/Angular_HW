@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="reddit">
+<head>
+	<meta charset="UTF-8">
+	<title>Reddit Re-skin</title>
+
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+	<h1>/r/glitch_art Gallery</h1>
+
+	<div ng-include="'app/components/reddit/reddit-view.html'"></div>
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+
+	<script src="app/app.js"></script>
+	<script src="app/components/reddit/reddit.controller.js"></script>
+	<script src="app/components/reddit/reddit.factory.js"></script>
+	<script src="app/components/reddit/reddit.service.js"></script>
+</body>
+</html>

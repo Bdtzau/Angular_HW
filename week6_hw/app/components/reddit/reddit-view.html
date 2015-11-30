@@ -1,0 +1,17 @@
+<div class="reddit-view" ng-controller="RedditController as redditCtrl">
+	<div ng-repeat="item in redditCtrl.reddit.items track by $index"
+		infinite-scroll="redditCtrl.reddit.nextPage()" 
+		infinite-scroll-distance="3">
+		<!-- <p>{{item.preview.images}}</p> -->
+		<a ng-href="{{item.url}}">
+			<div ng-style=" {'background-image': 'url(' + item.preview.images[0].source.url + ')'} " class="preview_image">
+				<div class="text">
+					<p class="title">{{item.title}}</p>
+					<p class="author">by: {{item.author}}</p>
+				</div>
+				
+			</div>
+		</a>
+		
+	</div>
+</div>
