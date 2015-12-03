@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokedex">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokedex</title>
+
+	<link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+<body>
+	<h1>Pokedex</h1>
+
+	<div ng-include="'app/components/pokedex/dex-view.html'"></div>
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+
+	<script src="app/app.js"></script>
+	<script src="app/components/pokedex/pokedex.controller.js"></script>
+	<script src="app/components/pokedex/pokedex.factory.js"></script>
+	<script src="app/components/pokedex/pokedex.service.js"></script>
+</body>
+</html>

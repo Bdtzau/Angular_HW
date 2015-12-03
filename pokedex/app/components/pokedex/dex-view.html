@@ -1,0 +1,19 @@
+<div class="dex-view" ng-controller="PokeController as pokeCtrl">
+	<h2>Dex View</h2>
+
+	<form name="searchForm"
+			ng-controller="PokeController as pokeCtrl" 
+			ng-submit="pokeCtrl.submitSearch({'qVal': pokeCtrl.qVal, 'qType': pokeCtrl.qType})">
+		
+		<input ng-model="pokeCtrl.qVal" type="text">
+		<select ng-model="pokeCtrl.qType" ng-options="type.value as type.text for type in pokeCtrl.types"></select>
+
+		<button type="submit" value="Submit">Pokedex go!</button>
+
+	</form>
+
+	<div class="results">
+		<h2>{{pokeCtrl.pokedex}}</h2>
+	</div>
+	
+</div>
