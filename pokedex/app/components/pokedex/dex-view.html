@@ -1,8 +1,6 @@
 <div class="dex-view" ng-controller="PokeController as pokeCtrl">
-	<h2>Dex View</h2>
 
 	<form name="searchForm"
-			ng-controller="PokeController as pokeCtrl" 
 			ng-submit="pokeCtrl.submitSearch({'qVal': pokeCtrl.qVal, 'qType': pokeCtrl.qType})">
 		
 		<input ng-model="pokeCtrl.qVal" type="text">
@@ -12,8 +10,50 @@
 
 	</form>
 
-	<div class="results">
-		<h2>{{pokeCtrl.pokedex}}</h2>
+	<div class="entry" ng-class="search.qType" ng-repeat="search in pokeCtrl.pokedex.searches | orderBy:'-$index' track by $index">
+
+		<h2>{{search.name}} #{{search.national_id}}</h2>
+
+		<img ng-src="http://pokeapi.co{{search.image.image}}" alt="">
+
+		<div class="info">
+			<p>type: <span ng-repeat="type in search.types">{{type.name}}</span></p>
+
+			<p>height: {{search.height}} ft</p>
+
+			<p>weight: {{search.weight}} lbs</p>
+
+			<p>egg groups: <span ng-repeat="egg_group in search.egg_groups">{{egg_group.name}}</span></p>
+
+			<p>abilities: <span ng-repeat="ability in search.abilities">{{ability.name}}</span></p>
+		</div>
+
+		<div class="stats">
+			<p>base stats:</p>
+			<ul>
+				<li>speed: {{search.speed}}</li>
+				<li>hp: {{search.hp}}</li>
+				<li>attack: {{search.attack}}</li>
+				<li>defense: {{search.defense}}</li>
+				<li>special attack: {{search.sp_atk}}</li>
+				<li>special defense: {{search.sp_def}}</li>
+			</ul>
+		</div>
+
+		<div class="description">
+			<p>{{search.randDesc.description}}</p>
+			<p>description from: <span ng-repeat="game in search.randDesc.games">{{game.name}}</span></p>
+		</div>
+
+		<!-- <div class="moves">
+			<p>moves:</p>
+			<ul>
+				<li ng-repeat="move in search.moves">
+					{{move.name}} learned by {{move.learn_type}}
+				</li>
+			</ul>
+		</div> -->
+
 	</div>
 	
 </div>

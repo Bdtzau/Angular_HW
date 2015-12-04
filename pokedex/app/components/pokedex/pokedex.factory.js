@@ -20,7 +20,35 @@ angular.module('pokedex')
 
 					console.log(data);
 
-					self.searches.push(data);
+					var result = data;
+
+					result.qType = qType;
+
+					if (result.sprites) {
+						PokeService.getSprite(result.sprites[0].resource_uri)
+							.then(function (data) {
+								result.image = data;
+							});
+					}
+
+					if (result.descriptions) {
+						var rArray = [];
+						var rMax = 0;
+						angular.forEach(result.descriptions, function(desc) {
+							rArray.push(Math.random());
+						});
+						rMax = Math.max(...rArray);
+
+						PokeService.getRandDesc(result.descriptions[rArray.indexOf(rMax)].resource_uri)
+							.then(function (data) {
+								result.randDesc = data;
+							});
+					}
+
+					console.log(result);
+					
+
+					self.searches.unshift(result);
 					console.log(self.searches);
 
 					self.busy = false;
